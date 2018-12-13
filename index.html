@@ -7,38 +7,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
+    <style>
+        #monitizedatass li{
+            display:inline;
+            padding-right:20px;
+        }
+    </style>
 </head>
-<body>
+<body style="position:relative;">
         <iframe src="audio/1-second-of-silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
         <h1>About <a href="https://chungus.club">Chungus</a></h1>
-        <audio src="audio/chungus.mp3" autoplay loop>
-            
-        </audio>
+
+        <div id="monitizedatass">
+            <ul>
+                <li><img src="images/myspace-button.png" style="width:100px; height:45px;"/></li>
+                <li><img src="images/paypal.png" style="width:100px; position:absolute; top:28px;" onmouseover="move(this)"/></li>
+            </ul>
+        </div>
+
         <div>
             <div>
-            <blink class="blink"><h1>For Megan <3</h1></blink>
-        </div>
-            <div style="float:right; position:relative; top:-119px;">
-                <img src="images/myspace-button.png" style="width:100px; height:45px;"/>
-            </div> 
-    
+                <blink class="blink"><h1>For Megan <3</h1></blink>
+            </div>
+
         </div>
     </div>
     <div>
         <blink><img src="images/chungus.png"></blink>
     </div>
-    
+    <audio src="audio/chungus.mp3" autoplay loop>
+            
+    </audio>
 </body>
 <footer>
     <h1>BOTTOM TEXT</h1>
 </footer>
 <script>
+        function move(el){
+            el.style.position = "absolute";
+            el.style.float = "left";
+            el.style.zindex = "99999";
+            el.style.top = el.style.top = Math.floor((Math.random() * 800) + 1);
+            el.style.left = el.style.left = Math.floor((Math.random() * 500) + 1);
+
+            console.log("top: " + el.style.top + " - left:" + el.style.left );
+        }
+
         setInterval(function(){
             var tags = document.getElementsByTagName("blink");
             var blinks = [].slice.call(tags);
             blinks.forEach(function(el){
                 el.style.visibility = el.style.visibility === "hidden" ? "visible" : "hidden";
             });
-        }, 10)
+        }, 10000)
     </script>
 </html>

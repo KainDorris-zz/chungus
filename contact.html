@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" media="screen" href="topnav.css" />
+
+        <script src="chungus.js"></script>
+        <style>
+            span {padding: 5px;}
+            body{
+                padding:5px;
+                background-image: url('images/chungus.png');
+                color: #39ff14;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="topnav">
+                <a href="http://chungus.club">CHUNGUS</a>
+                <a href="http://chungus.club">About</a>
+                <a class="active" href="http://chungus.club/contact.html">CoNtAcT</a>
+        </div>
+
+        <form>
+            <h1>Please enter your information and our support staff will contact you between 2am - 4am to obtain further information</h1>
+            <div>
+                <label>Phone Number:</label> 
+                <br/>   
+                    (<span id="areacode"></span>) 
+                    -
+                    <span id="prefix"></span> 
+                    -
+                    <span id="number"></span>
+                    <br/>
+                    <button type="button" onclick="stop('area')">stop</button>
+                    <button type="button" onclick="stop('prefix')">stop</button>
+                    <button type="button" onclick="stop('number')">stop</button>
+            </div>
+            <br>
+            <div>
+                <label>First Name:</label>
+                <br>
+                <input id="firstName" type="text" onblur="validateLastName(this)"/>
+                <br>
+                <blink><span id="firstNameInsult" style="color:red"></span></blink>
+            </div>
+            <div>
+                <label>Last Name:</label>
+                <br>
+                <input id="lastName" type="text"/>
+                <br>
+                <span id="lastNameInsult"></span>
+            </div>
+            <div>
+                <label>Email:</label>
+                <br/>
+                <input type="text" id="email" style="width:300px;" onblur="validateEmail(this)"/>
+                <br/>
+                <span id="emailInsult" style="visibility: hidden; color: orange;">Thanks for signing up for cat facts!!</span>
+            </div>
+            <button type="button" onclick="validateform()">Submit!</button>
+        </form>
+
+
+        <audio id="a1" src="audio/horn.mp3"></audio>
+    </body>
+    <script>
+        var ac, pre, num = false;
+        var acInterval, prefixInterval, numberInterval;
+
+        function startPhone(){
+            acInterval = setInterval(function(){
+            setRandomNumber('areacode', 3);
+            },100);
+
+            prefixInterval = setInterval(function(){
+                setRandomNumber('prefix', 3);
+            }, 100);
+
+            numberInterval = setInterval(function(){
+                setRandomNumber('number', 4);
+            }, 100);
+        }
+        
+        function stop(thing){
+            switch(thing){
+                case 'area':
+                    clearInterval(acInterval);
+                    ac = true;
+                    break;
+                case 'prefix':
+                    pre = true;
+                    clearInterval(prefixInterval);
+                    break;
+                default:
+                    num = true;
+                    clearInterval(numberInterval);
+                    break;
+            }
+        }
+        
+        function validateform(){
+            var fn = !isEmpty(document.getElementById('firstName'));
+            var ln = !isEmpty(document.getElementById('lastName'));
+            var em = !isEmpty(document.getElementById('email'));
+            var isValid = ac && pre && num && fn && ln && em;
+            
+            setTimeout(function(){
+                var audioElement = document.getElementById('a1');
+                audioElement.play();
+                alert('Form has invalid data, please correct all errors and resubit');
+            },10);
+
+           
+            startPhone();
+            
+
+        }
+
+        function setRandomNumber(elName, digits){
+            var endNumber = digits === 3 ? 999 : 9999;
+            var startNumber = digits === 3 ? 100 : 1000;
+            var span = document.getElementById(elName);
+            span.innerHTML = Math.floor(Math.random()*(endNumber-startNumber+1)+startNumber);
+        }
+        
+        function isEmpty(el){
+            return el.value.length === 0 || el.value.trimLeft().trimRight() === '';
+        }
+
+        function validateLastName(el){
+            if(isEmpty(el)){
+                document.getElementById('firstNameInsult').innerHTML = '';
+                el.style.borderColor = "black";
+                return;
+            }
+
+            el.style.borderColor = "red";
+
+            document.getElementById('firstNameInsult').innerHTML = 'Please enter a valid first name.';
+        }
+
+        function validateEmail(el){
+            if(isEmpty(el)){
+                document.getElementById('emailInsult').innerHTML = '';
+                el.style.borderColor = "black";
+                return;
+            }
+
+            el.style.borderColor = "red";
+
+            document.getElementById('emailInsult').style.visibility = 'visible';
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            blinkify(700);
+            startPhone();
+        });
+
+
+    </script>
+</html>

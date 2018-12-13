@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="topnav.css" />
 
-    <script src="main.js"></script>
+    <script src="chungus.js"></script>
     <style>
         #monitizedatass li{
             display:inline;
@@ -18,9 +18,9 @@
 </head>
 <body style="position:relative;">
         <div class="topnav">
-                <a class="active" href="http://chungus.club">CHUNGUS</a>
+                <a href="http://chungus.club">CHUNGUS</a>
                 <a href="http://chungus.club">About</a>
-                <a href="http://chungus.club/">CoNACT</a>
+                <a class="active" href="http://chungus.club/contact.html">CoNtAcT</a>
               </div>
               
         <iframe src="audio/1-second-of-silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
@@ -71,12 +71,10 @@
             audioElement.play();
         }
 
-        setInterval(function(){
-            var tags = document.getElementsByTagName("blink");
-            var blinks = [].slice.call(tags);
-            blinks.forEach(function(el){
-                el.style.visibility = el.style.visibility === "hidden" ? "visible" : "hidden";
-            });
-        }, 10)
+        document.addEventListener("DOMContentLoaded", function(){
+            blinkify(10);
+        });
+
+        window.onbeforeunload = function() { window.location = "BIG CHUNGUS SAYS YOU NO LEAVE!"; };
     </script>
 </html>

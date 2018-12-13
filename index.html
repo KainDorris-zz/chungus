@@ -8,17 +8,29 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
 </head>
-<body>
-    <div id=centera>
+<body style = display:block;>
+        <iframe src="audio/chungus.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
         <h1>About <a href="https://chungus.club">Chungus</a></h1>
-        <blink><h1>For Megan <3</h1></blink>
+        <audio src="audio/chungus.mp3" autoplay loop>
+            
+        </audio>
+        <blink class="blink"><h1>For Megan <3</h1></blink>
     </div>
     <div>
-        <img src="images/chungus.png">
+        <blink><img src="images/chungus.png"></blink>
     </div>
     
 </body>
 <footer>
     <h1>BOTTOM TEXT</h1>
 </footer>
+<script>
+        setInterval(function(){
+            var tags = document.getElementsByTagName("blink");
+            var blinks = [].slice.call(tags);
+            blinks.forEach(function(el){
+                el.style.visibility = el.style.visibility === "hidden" ? "visible" : "hidden";
+            });
+        }, 100)
+    </script>
 </html>

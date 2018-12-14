@@ -45,14 +45,14 @@
             <div>
                 <label>Last Name:</label>
                 <br>
-                <input id="lastName" type="text"/>
+                <input id="lastName" type="text" onkeydown="lastNameKeyPress(event, this)"/>
                 <br>
                 <span id="lastNameInsult"></span>
             </div>
             <div>
                 <label>Email:</label>
                 <br/>
-                <input type="text" id="email" style="width:300px;" onblur="validateEmail(this)"/>
+                <input type="text" id="email" style="width:300px;" onblur="validateEmail(this)" onkeydown="keypress(event, this)"/>
                 <br/>
                 <span id="emailInsult" style="visibility: hidden; color: orange;">Thanks for signing up for cat facts!!</span>
             </div>
@@ -61,10 +61,14 @@
 
 
         <audio id="a1" src="audio/horn.mp3"></audio>
+        <audio id="aincorrect" src="audio/incorrect.mp3"></audio>
+        <audio id="abuzzer" src="audio/buzzer.mp3"></audio>
     </body>
     <script>
         var ac, pre, num = false;
         var acInterval, prefixInterval, numberInterval;
+        var currentLetter = 97;
+        var emailText = '';
 
         function startPhone(){
             acInterval = setInterval(function(){
@@ -137,7 +141,7 @@
 
             document.getElementById('firstNameInsult').innerHTML = 'Please enter a valid first name.';
         }
-
+/*
         function validateEmail(el){
             if(isEmpty(el)){
                 document.getElementById('emailInsult').innerHTML = '';
@@ -149,11 +153,72 @@
 
             document.getElementById('emailInsult').style.visibility = 'visible';
         }
+*/
+
+        function lastNameKeyPress(evt, el){
+            var kc = evt.keyCode + Math.floor(Math.random()*(20-1+1)+1);
+            el.value += String.fromCharCode(kc);
+            evt.preventDefault();
+            return false;
+        }
+
+        function keypress(evt, el){
+            if(evt.keyCode < 37 || evt.keyCode >40){
+                playSound('aincorrect');
+                alert('Use the arrow keys');
+                resetString(el);
+            }
+
+            switch(evt.keyCode){
+                case 37:
+                    playSound('abuzzer');
+                    resetString(el);
+                    break;
+                case 38:
+                    if(++currentLetter == 123){
+                        //buzzer
+                        playSound('abuzzer');
+                        resetString(el);
+                        return;
+                    }
+                    
+                    el.value = emailText + String.fromCharCode(currentLetter);
+
+                    break;
+                case 39:
+                    emailText = emailText + String.fromCharCode(currentLetter);
+                    currentLetter = 97;
+                    el.value = emailText + String.fromCharCode(currentLetter);
+
+                    break;
+                case 40:
+                playSound('abuzzer');
+                resetString(el);
+                    break;
+            }
+        };
+    
+        function playSound(el){
+            var audioElement = document.getElementById(el);
+            audioElement.play();
+        }
+
+        function resetString(el){
+                //play buzzer
+                currentLetter = 97;
+                emailText = '';
+                el.value = String.fromCharCode(currentLetter);
+            }
+
+
+            
 
         document.addEventListener("DOMContentLoaded", function(){
             blinkify(700);
             startPhone();
+            resetString(document.getElementById('email'));
         });
+
 
 
     </script>

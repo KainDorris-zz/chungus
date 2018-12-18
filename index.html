@@ -14,9 +14,13 @@
             display:inline;
             padding-right:20px;
         }
+
+        #thechungus{
+            z-index: 1;
+        }
     </style>
 </head>
-<body style="position:relative;">
+<body>
         <div class="topnav">
                 <a class="active" href="http://chungus.club">CHUNGUS</a>
                 <a href="http://chungus.club">About</a>
@@ -29,7 +33,7 @@
         <div id="monitizedatass">
             <ul>
                 <li><img src="images/myspace-button.png" style="width:100px; height:45px;"/></li>
-                <li><img src="images/paypal.png" style="width:100px;" onmouseover="move(this)"/></li>
+                <li><img src="images/paypal.png" style="width:100px;" onmouseover="move(this)" onclick="move(this)"/></li>
             </ul>
         </div>
 
@@ -41,7 +45,7 @@
         </div>
     </div>
     <div>
-        <blink><img src="images/chungus.png"></blink>
+        <blink><img id="thechungus" src="images/chungus.png"></blink>
     </div>
     <audio src="audio/chungus.mp3" autoplay loop></audio>
     <audio id="a1" src="audio/squeak.mp3"></audio>
@@ -58,7 +62,7 @@
             el.style.position = "absolute";
             el.style.float = "left";
             el.style.zindex = "99999";
-            el.style.top = el.style.top = Math.floor((Math.random() * 800) + 1);
+            el.style.top = el.style.top = Math.floor((Math.random() * 500) + 1);
             el.style.left = el.style.left = Math.floor((Math.random() * 500) + 1);
 
             console.log("top: " + el.style.top + " - left:" + el.style.left );
@@ -72,6 +76,7 @@
         }
 
         document.addEventListener("DOMContentLoaded", function(){
+            //spinification('thechungus', 100)
             blinkify(10);
         });
 

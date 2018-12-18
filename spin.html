@@ -1,0 +1,128 @@
+<DOCTYPE <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CHUNGUS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="topnav.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+        <script src="chungus.js"></script>
+        <script src="marquee.js"></script>
+        <style>
+            #monitizedatass li{
+                display:inline;
+                padding-right:20px;
+            }
+
+            #spinme {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+                
+ 
+                }
+
+                #spinme::before {
+                    background: url('images/chungus.png')
+                        no-repeat center center;
+                    background-size: cover;
+                    content: "";
+                    width: 100vw;
+                    height: 100vw;
+                    position: absolute;
+                    animation: spin 15s linear infinite;
+                    }
+
+                @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                25% {
+                    transform: rotate(90deg);
+                }
+                50% {
+                    transform: rotate(180deg);
+                }               
+                75%{
+                    transform: rotate(270deg);
+                } 
+                100% {
+                    transform: rotate(360deg);
+                }
+                }  
+
+                .content{
+                    position:relative;
+                    
+                }   
+
+        </style>
+    </head>
+    <body style="position:relative;">
+        <div class="topnav">
+            <a class="active" href="http://chungus.club">CHUNGUS</a>
+            <a href="http://chungus.club">About</a>
+            <a  href="http://chungus.club/contact.html">CoNtAcT</a>
+        </div>
+                  
+            
+        <div id="spinme">
+            <div class="content">
+                <h1>About <a href="https://chungus.club">Chungus</a></h1>
+    
+                <div id="monitizedatass">
+                    <ul>
+                        <li><img src="images/myspace-button.png" style="width:100px; height:45px;"/></li>
+                        <li><img src="images/paypal.png" style="width:100px;" onmouseover="move(this)"/></li>
+                    </ul>
+                </div>
+                <h1 id="meg">For Megan &lt;3 </h1>
+                <div>
+                        
+                </div>
+            </div>
+        </div>
+
+        <iframe src="audio/1-second-of-silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+        <audio src="audio/chungus.mp3" autoplay loop></audio>
+        <audio id="a1" src="audio/squeak.mp3"></audio>
+        <audio id="a2" src="audio/twang.mp3"></audio>
+        <audio id="a3" src="audio/wow.mp3"></audio>
+        <audio id="a4" src="audio/animal.mp3"></audio>
+    </body>
+    <footer>
+        <h1>BOTTOM TEXT</h1>
+    </footer>
+    <script>
+            function move(el){
+                playathing();
+                el.style.position = "absolute";
+                el.style.float = "left";
+                el.style.zindex = "99999";
+                el.style.top = el.style.top = Math.floor((Math.random() * 400) + 1);
+                el.style.left = el.style.left = Math.floor((Math.random() * 400) + 1);
+    
+                console.log("top: " + el.style.top + " - left:" + el.style.left );
+            }
+            function playathing(){
+                var sounds = ['a1', 'a2', 'a3', 'a4'];
+                var index = Math.floor(Math.random() * 1000) % sounds.length;
+                var id = sounds[index];
+                var audioElement = document.getElementById(id);
+                audioElement.play();
+            }
+    
+            document.addEventListener("DOMContentLoaded", function(){
+                //spinification('thechungus', 100)
+                blinkify(10);
+                
+                $('#meg').marquee({speed:1, leftToRight:true});
+            });
+    
+            window.onbeforeunload = function() { window.location = "BIG CHUNGUS SAYS YOU NO LEAVE!"; };
+        </script>
+    </html>
+    

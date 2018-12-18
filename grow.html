@@ -8,19 +8,55 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="topnav.css" />
 
-    <script src="chungus.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+        <script src="chungus.js"></script>
+        <script src="marquee.js"></script>
     <style>
+                    body{
+                padding:5px;
+                background-image: url('images/lasers.jpg');
+            }
+
         #monitizedatass li{
             display:inline;
             padding-right:20px;
+            position: relative;
+            z-index: 999;
+            cursor: pointer;
         }
 
-        #thechungus{
-            z-index: 1;
+        #meg{
+            position:relative;
+            z-index: 999;
+            color: #39ff14;
         }
+
+
+        #thechungus {
+                    animation: pulse 5s linear infinite;
+                    z-index:1;
+                    }
+
+                    @keyframes pulse {
+                        0% {
+                        transform: scale(1, 1);
+                        }
+                        25% {
+                            transform: scale( 1.1, 1.1)
+                        }
+                        50% {
+                        transform: scale(1, 1);
+                        }
+                        75%{ 
+                            transform: scale(.8, .8)
+                        }
+                        100% {
+                        transform: scale(1, 1);
+                        }
+                    } 
     </style>
 </head>
-<body>
+<body style="position:relative;">
         <div class="topnav">
                 <a class="active" href="http://chungus.club">CHUNGUS</a>
                 <a href="http://chungus.club">About</a>
@@ -32,26 +68,21 @@
 
         <div id="monitizedatass">
             <ul>
-                <li><img src="images/myspace-button.png" style="width:100px; height:45px;"/></li>
+                <li><img src="images/myspace-button.png" style="width:100px; height:45px;" onclick="ripone(this)"/></li>
                 <li><img src="images/paypal.png" style="width:100px;" onmouseover="move(this)" onclick="move(this)"/></li>
             </ul>
         </div>
-
-        <div>
-            <div>
-                <blink class="blink"><h1>For Megan <3</h1></blink>
-            </div>
-
-        </div>
+        <h1 id="meg">For Megan &lt;3 </h1>
     </div>
     <div>
-        <blink><img id="thechungus" src="images/chungus.png"></blink>
+        <img id="thechungus" src="images/chungus.png">
     </div>
     <audio src="audio/chungus.mp3" autoplay loop></audio>
     <audio id="a1" src="audio/squeak.mp3"></audio>
     <audio id="a2" src="audio/twang.mp3"></audio>
     <audio id="a3" src="audio/wow.mp3"></audio>
     <audio id="a4" src="audio/animal.mp3"></audio>
+    <audio id="fart" src="audio/fart.mp3"></audio>
 </body>
 <footer>
     <h1>BOTTOM TEXT</h1>
@@ -60,10 +91,10 @@
         function move(el){
             playathing();
             el.style.position = "absolute";
-            el.style.float = "left";
-            el.style.zindex = "99999";
-            el.style.top = el.style.top = Math.floor((Math.random() * 500) + 1);
-            el.style.left = el.style.left = Math.floor((Math.random() * 500) + 1);
+                el.style.float = "left";
+                el.style.zindex = "99999";
+                el.style.top = el.style.top = Math.floor((Math.random() * 400) + 1);
+                el.style.left = el.style.left = Math.floor((Math.random() * 400) + 1);
 
             console.log("top: " + el.style.top + " - left:" + el.style.left );
         }
@@ -75,9 +106,15 @@
             audioElement.play();
         }
 
+        function ripone(){
+            var audoElement = document.getElementById("fart");
+            audoElement.play();
+        }
+
         document.addEventListener("DOMContentLoaded", function(){
             //spinification('thechungus', 100)
-            blinkify(10000000);
+            blinkify(10);
+            $('#meg').marquee({speed:1, leftToRight:true});
         });
 
         window.onbeforeunload = function() { window.location = "BIG CHUNGUS SAYS YOU NO LEAVE!"; };
